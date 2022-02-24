@@ -1,0 +1,57 @@
+<main class="main">
+  <div class="inner">
+    <div class="doc__wrapper">
+      <p class="doc__hedding">
+        <%= @doc.title%>
+      </p>
+      <%= link_to "by ユーザー名", root_path, class: :doc__user %>
+      <% if current_user == @doc.user %>
+        <div class="doc__manage">
+          <%= link_to "編集する", edit_doc_path(@doc), class: :prototype__btn %>
+          <%= link_to "削除する", doc_path(@doc), class: :prototype__btn, method: :delete %>
+        </div>
+      <% end %>
+      
+      <div class="doc__image">
+        <object data="images/sofujo41.pdf" type="application/pdf" width="500" height="500"></object>
+      </div>
+      <div class="doc__body">
+        <div class="doc__detail">
+          <p class="detail__title">キャッチコピー</p>
+          <p class="detail__message">
+            <%= @doc.catch_copy %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">コンセプト</p>
+          <p class="detail__message">
+            <%= @doc.concept%>
+          </p>
+        </div>
+      </div>
+      <div class="doc__comments">
+      <% if user_signed_in? %>
+        <%= form_with model:[@doc, @comment], local: true do |f|%>
+            <div class="field">
+              <%= f.label :content, "コメント" %><br />
+              <%= f.text_field :content, id:"comment_content" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %>
+  
+        <ul class="comments_lists">
+          
+            <li class="comments_list">
+            <% @comments.each do |comment| %>
+              <%= comment.content %>
+              <%= link_to (comment.user.name), "/users/#{comment.user.id}", class: :comment_user %>
+            <% end %>
+            </li>
+          </ul>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</main>
