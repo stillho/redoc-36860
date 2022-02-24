@@ -1,0 +1,12 @@
+<div class="card">
+ <% if doc.image.attached?%>
+  <%= link_to image_tag(doc.image, class: :card__img ), doc_path(doc.id)%>
+  <% end %>
+  <div class="card__body">
+    <%= link_to "#{doc.title}", doc_path(doc), class: :card__title%>
+    <p class="card__summary">
+      <%= "#{doc.catch_copy}" %>
+    </p>
+    <%= link_to "by#{doc.user.name}", root_path, class: :card__user %>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 class CreateDocs < ActiveRecord::Migration[6.0]
   def change
     create_table :docs do |t|
-      t.string :name
-      t.string :text
-      t.text :image
+      t.string :title
+      t.text :catch_copy
+      t.text :concept
+      t.references :user, null: false, foreign_key: true
       t.timestamps
     end
   end
