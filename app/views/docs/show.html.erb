@@ -4,24 +4,19 @@
       <p class="doc__hedding">
         <%= @doc.title%>
       </p>
-      <%= link_to "by ユーザー名", root_path, class: :doc__user %>
+      <%= link_to "#{@doc.user.name}", root_path, class: :doc__user %>
       <% if current_user == @doc.user %>
         <div class="doc__manage">
-          <%= link_to "編集する", edit_doc_path(@doc), class: :prototype__btn %>
-          <%= link_to "削除する", doc_path(@doc), class: :prototype__btn, method: :delete %>
+          <%= button_to "編集する", edit_doc_path(@doc), class: :prototype__btn, method: :get  %>
+          <%= button_to "削除する", doc_path(@doc), class: :prototype__btn, method: :delete %>
+          <%= button_to 'この書類をダウンロード', download_path, method: :get, class: :prototype__btn %>       
         </div>
       <% end %>
       
       <div class="doc__image">
-        <object data="images/sofujo41.pdf" type="application/pdf" width="500" height="500"></object>
+        <object data="images/住所変更届_6072-1.jpg"></object>
       </div>
       <div class="doc__body">
-        <div class="doc__detail">
-          <p class="detail__title">キャッチコピー</p>
-          <p class="detail__message">
-            <%= @doc.catch_copy %>
-          </p>
-        </div>
         <div class="prototype__detail">
           <p class="detail__title">コンセプト</p>
           <p class="detail__message">

@@ -22,7 +22,7 @@
           </div>
          <% if user_signed_in? %>
             <div class="user_nav__right">
-              <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout, method: :post %>
+              <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout %>
               <%= link_to "New document", new_doc_path, class: :nav__btn %>
             </div>
           <% else %>

@@ -46,7 +46,11 @@ class DocsController < ApplicationController
     @doc.destroy
     redirect_to action: :index
   end
-  
+
+  def download
+    download_file_name = "images/sofujo41.pdf"
+    send_file download_file_name
+  end  
   private 
 
   def doc_params
